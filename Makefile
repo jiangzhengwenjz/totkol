@@ -156,6 +156,10 @@ sound/songs/%.s: sound/songs/%.mid
 	cd $(@D) && ../../$(MID) $(<F)
 
 $(C_BUILDDIR)/m4a.o: CC1 := tools/agbcc/bin/old_agbcc
+$(C_BUILDDIR)/agb_flash.o: CFLAGS := -mthumb-interwork -Wimplicit -Wparentheses -Werror -O1 -g -fhex-asm -fprologue-bugfix
+$(C_BUILDDIR)/agb_flash_le.o: CFLAGS := -mthumb-interwork -Wimplicit -Wparentheses -Werror -O1 -g -fhex-asm -fprologue-bugfix
+$(C_BUILDDIR)/agb_flash_mx.o: CFLAGS := -mthumb-interwork -Wimplicit -Wparentheses -Werror -O1 -g -fhex-asm -fprologue-bugfix
+$(C_BUILDDIR)/agb_flash_at.o: CFLAGS := -mthumb-interwork -Wimplicit -Wparentheses -Werror -O1 -g -fhex-asm -fprologue-bugfix
 
 ifeq ($(NODEP),1)
 $(C_BUILDDIR)/%.o: c_dep :=

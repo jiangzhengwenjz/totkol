@@ -92,13 +92,13 @@ IdentifyFlash: @ 0x08158FBC
 	bl ReadFlashId
 	lsls r0, r0, #0x10
 	lsrs r3, r0, #0x10
-	ldr r2, _08158FE4 @ =gUnk_0824DCDC
+	ldr r2, _08158FE4 @ =sSetupInfos
 	movs r4, #1
 	b _08158FEA
 	.align 2, 0
 _08158FDC: .4byte 0x04000204
 _08158FE0: .4byte 0x0000FFFC
-_08158FE4: .4byte gUnk_0824DCDC
+_08158FE4: .4byte sSetupInfos
 _08158FE8:
 	adds r2, #4
 _08158FEA:
@@ -113,27 +113,27 @@ _08158FEA:
 	bne _08158FE8
 	movs r4, #0
 _08158FFE:
-	ldr r1, _08159038 @ =gUnk_02029C14
+	ldr r1, _08159038 @ =gProgramFlashSector
 	ldr r0, [r2]
 	ldr r0, [r0]
 	str r0, [r1]
-	ldr r1, _0815903C @ =gUnk_02029C20
+	ldr r1, _0815903C @ =gEraseFlashChip
 	ldr r0, [r2]
 	ldr r0, [r0, #4]
 	str r0, [r1]
-	ldr r1, _08159040 @ =gUnk_02029C24
+	ldr r1, _08159040 @ =gEraseFlashSector
 	ldr r0, [r2]
 	ldr r0, [r0, #8]
 	str r0, [r1]
-	ldr r1, _08159044 @ =gUnk_02029C10
+	ldr r1, _08159044 @ =gWaitForFlashWrite
 	ldr r0, [r2]
 	ldr r0, [r0, #0xc]
 	str r0, [r1]
-	ldr r1, _08159048 @ =gUnk_03003EF8
+	ldr r1, _08159048 @ =gFlashMaxTime
 	ldr r0, [r2]
 	ldr r0, [r0, #0x10]
 	str r0, [r1]
-	ldr r1, _0815904C @ =gUnk_02029C18
+	ldr r1, _0815904C @ =gFlash
 	ldr r0, [r2]
 	adds r0, #0x14
 	str r0, [r1]
@@ -142,16 +142,16 @@ _08158FFE:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_08159038: .4byte gUnk_02029C14
-_0815903C: .4byte gUnk_02029C20
-_08159040: .4byte gUnk_02029C24
-_08159044: .4byte gUnk_02029C10
-_08159048: .4byte gUnk_03003EF8
-_0815904C: .4byte gUnk_02029C18
+_08159038: .4byte gProgramFlashSector
+_0815903C: .4byte gEraseFlashChip
+_08159040: .4byte gEraseFlashSector
+_08159044: .4byte gWaitForFlashWrite
+_08159048: .4byte gFlashMaxTime
+_0815904C: .4byte gFlash
 
 	thumb_func_start FlashTimerIntr
 FlashTimerIntr: @ 0x08159050
-	ldr r1, _0815906C @ =gUnk_03003F02
+	ldr r1, _0815906C @ =sTimerCount
 	ldrh r0, [r1]
 	cmp r0, #0
 	beq _0815906A
@@ -161,14 +161,14 @@ FlashTimerIntr: @ 0x08159050
 	lsls r0, r0, #0x10
 	cmp r0, #0
 	bne _0815906A
-	ldr r1, _08159070 @ =gUnk_03003F04
+	ldr r1, _08159070 @ =gFlashTimeoutFlag
 	movs r0, #1
 	strb r0, [r1]
 _0815906A:
 	bx lr
 	.align 2, 0
-_0815906C: .4byte gUnk_03003F02
-_08159070: .4byte gUnk_03003F04
+_0815906C: .4byte sTimerCount
+_08159070: .4byte gFlashTimeoutFlag
 
 	thumb_func_start SetFlashTimerIntr
 SetFlashTimerIntr: @ 0x08159074
@@ -177,9 +177,9 @@ SetFlashTimerIntr: @ 0x08159074
 	lsrs r1, r0, #0x18
 	cmp r1, #3
 	bhi _081590A8
-	ldr r0, _08159098 @ =gUnk_03003F00
+	ldr r0, _08159098 @ =sTimerNum
 	strb r1, [r0]
-	ldr r1, _0815909C @ =gUnk_03003F08
+	ldr r1, _0815909C @ =sTimerReg
 	ldrb r0, [r0]
 	lsls r0, r0, #2
 	ldr r3, _081590A0 @ =0x04000100
@@ -190,8 +190,8 @@ SetFlashTimerIntr: @ 0x08159074
 	movs r0, #0
 	b _081590AA
 	.align 2, 0
-_08159098: .4byte gUnk_03003F00
-_0815909C: .4byte gUnk_03003F08
+_08159098: .4byte sTimerNum
+_0815909C: .4byte sTimerReg
 _081590A0: .4byte 0x04000100
 _081590A4: .4byte FlashTimerIntr
 _081590A8:
@@ -208,13 +208,13 @@ StartFlashTimer: @ 0x081590AC
 	push {r4, r5, r6}
 	lsls r0, r0, #0x18
 	lsrs r0, r0, #0x18
-	ldr r1, _08159130 @ =gUnk_03003EF8
+	ldr r1, _08159130 @ =gFlashMaxTime
 	lsls r2, r0, #1
 	adds r2, r2, r0
 	lsls r2, r2, #1
 	ldr r0, [r1]
 	adds r2, r2, r0
-	ldr r1, _08159134 @ =gUnk_03003F0C
+	ldr r1, _08159134 @ =sSavedIme
 	ldr r0, _08159138 @ =0x04000208
 	mov sb, r0
 	ldrh r0, [r0]
@@ -222,12 +222,12 @@ StartFlashTimer: @ 0x081590AC
 	movs r3, #0
 	mov r1, sb
 	strh r3, [r1]
-	ldr r0, _0815913C @ =gUnk_03003F08
+	ldr r0, _0815913C @ =sTimerReg
 	mov r8, r0
 	ldr r4, [r0]
 	strh r3, [r4, #2]
 	ldr r6, _08159140 @ =0x04000200
-	ldr r1, _08159144 @ =gUnk_03003F00
+	ldr r1, _08159144 @ =sTimerNum
 	mov sl, r1
 	ldrb r1, [r1]
 	movs r5, #8
@@ -237,9 +237,9 @@ StartFlashTimer: @ 0x081590AC
 	ldrh r0, [r6]
 	orrs r0, r1
 	strh r0, [r6]
-	ldr r0, _08159148 @ =gUnk_03003F04
+	ldr r0, _08159148 @ =gFlashTimeoutFlag
 	strb r3, [r0]
-	ldr r1, _0815914C @ =gUnk_03003F02
+	ldr r1, _0815914C @ =sTimerCount
 	ldrh r0, [r2]
 	strh r0, [r1]
 	adds r2, #2
@@ -267,14 +267,14 @@ StartFlashTimer: @ 0x081590AC
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08159130: .4byte gUnk_03003EF8
-_08159134: .4byte gUnk_03003F0C
+_08159130: .4byte gFlashMaxTime
+_08159134: .4byte sSavedIme
 _08159138: .4byte 0x04000208
-_0815913C: .4byte gUnk_03003F08
+_0815913C: .4byte sTimerReg
 _08159140: .4byte 0x04000200
-_08159144: .4byte gUnk_03003F00
-_08159148: .4byte gUnk_03003F04
-_0815914C: .4byte gUnk_03003F02
+_08159144: .4byte sTimerNum
+_08159148: .4byte gFlashTimeoutFlag
+_0815914C: .4byte sTimerCount
 _08159150: .4byte 0x04000202
 
 	thumb_func_start StopFlashTimer
@@ -282,7 +282,7 @@ StopFlashTimer: @ 0x08159154
 	ldr r3, _08159184 @ =0x04000208
 	movs r1, #0
 	strh r1, [r3]
-	ldr r2, _08159188 @ =gUnk_03003F08
+	ldr r2, _08159188 @ =sTimerReg
 	ldr r0, [r2]
 	strh r1, [r0]
 	adds r0, #2
@@ -291,23 +291,23 @@ StopFlashTimer: @ 0x08159154
 	subs r0, #2
 	str r0, [r2]
 	ldr r2, _0815918C @ =0x04000200
-	ldr r0, _08159190 @ =gUnk_03003F00
+	ldr r0, _08159190 @ =sTimerNum
 	ldrb r0, [r0]
 	movs r1, #8
 	lsls r1, r0
 	ldrh r0, [r2]
 	bics r0, r1
 	strh r0, [r2]
-	ldr r0, _08159194 @ =gUnk_03003F0C
+	ldr r0, _08159194 @ =sSavedIme
 	ldrh r0, [r0]
 	strh r0, [r3]
 	bx lr
 	.align 2, 0
 _08159184: .4byte 0x04000208
-_08159188: .4byte gUnk_03003F08
+_08159188: .4byte sTimerReg
 _0815918C: .4byte 0x04000200
-_08159190: .4byte gUnk_03003F00
-_08159194: .4byte gUnk_03003F0C
+_08159190: .4byte sTimerNum
+_08159194: .4byte sSavedIme
 
 	thumb_func_start ReadFlash1
 ReadFlash1: @ 0x08159198
@@ -317,7 +317,7 @@ ReadFlash1: @ 0x08159198
 	thumb_func_start SetReadFlash1
 SetReadFlash1: @ 0x0815919C
 	adds r2, r0, #0
-	ldr r1, _081591B4 @ =gUnk_03003EFC
+	ldr r1, _081591B4 @ =gPollFlashStatus
 	adds r0, r2, #1
 	str r0, [r1]
 	ldr r3, _081591B8 @ =ReadFlash1
@@ -329,7 +329,7 @@ SetReadFlash1: @ 0x0815919C
 	lsls r0, r0, #0xf
 	b _081591CC
 	.align 2, 0
-_081591B4: .4byte gUnk_03003EFC
+_081591B4: .4byte gPollFlashStatus
 _081591B8: .4byte ReadFlash1
 _081591BC: .4byte SetReadFlash1
 _081591C0:
@@ -360,16 +360,16 @@ WaitForFlashWrite_Common: @ 0x081591D4
 	mov r8, r0
 	adds r0, r4, #0
 	bl StartFlashTimer
-	ldr r7, _081591FC @ =gUnk_03003EFC
+	ldr r7, _081591FC @ =gPollFlashStatus
 	movs r0, #0xc0
 	lsls r0, r0, #8
 	orrs r4, r0
 	lsls r4, r4, #0x10
 	b _08159224
 	.align 2, 0
-_081591FC: .4byte gUnk_03003EFC
+_081591FC: .4byte gPollFlashStatus
 _08159200:
-	ldr r0, _08159218 @ =gUnk_02029C18
+	ldr r0, _08159218 @ =gFlash
 	ldr r0, [r0]
 	ldrh r1, [r0, #0x14]
 	ldr r0, _0815921C @ =0x00001CC2
@@ -383,7 +383,7 @@ _08159212:
 	mov r8, r4
 	b _0815924C
 	.align 2, 0
-_08159218: .4byte gUnk_02029C18
+_08159218: .4byte gFlash
 _0815921C: .4byte 0x00001CC2
 _08159220: .4byte 0x0E005555
 _08159224:
@@ -394,7 +394,7 @@ _08159224:
 	lsrs r0, r0, #0x18
 	cmp r0, r6
 	beq _0815924C
-	ldr r0, _0815925C @ =gUnk_03003F04
+	ldr r0, _0815925C @ =gFlashTimeoutFlag
 	ldrb r0, [r0]
 	cmp r0, #0
 	beq _08159224
@@ -414,7 +414,7 @@ _0815924C:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_0815925C: .4byte gUnk_03003F04
+_0815925C: .4byte gFlashTimeoutFlag
 
 	thumb_func_start ReadFlash_Core
 ReadFlash_Core: @ 0x08159260
@@ -663,7 +663,7 @@ _08159424:
 _0815942A:
 	cmp r6, #2
 	bhi _08159450
-	ldr r0, _08159458 @ =gUnk_02029C14
+	ldr r0, _08159458 @ =gProgramFlashSector
 	ldr r2, [r0]
 	adds r0, r4, #0
 	adds r1, r5, #0
@@ -684,7 +684,7 @@ _08159450:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_08159458: .4byte gUnk_02029C14
+_08159458: .4byte gProgramFlashSector
 
 	thumb_func_start ProgramFlashSectorAndVerifyNBytes
 ProgramFlashSectorAndVerifyNBytes: @ 0x0815945C
@@ -702,7 +702,7 @@ _0815946A:
 _08159470:
 	cmp r6, #2
 	bhi _08159498
-	ldr r0, _081594A0 @ =gUnk_02029C14
+	ldr r0, _081594A0 @ =gProgramFlashSector
 	ldr r2, [r0]
 	adds r0, r4, #0
 	adds r1, r5, #0
@@ -724,4 +724,4 @@ _08159498:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_081594A0: .4byte gUnk_02029C14
+_081594A0: .4byte gProgramFlashSector

@@ -2186,7 +2186,7 @@ sub_08005060: @ 0x08005060
 	push {r4, r5, r6, lr}
 	adds r4, r0, #0
 	ldr r5, _08005078 @ =gUnk_03002C82
-	ldr r0, _0800507C @ =gUnk_03002A10
+	ldr r0, _0800507C @ =gMultiSioArea
 	movs r2, #0x92
 	lsls r2, r2, #1
 	adds r1, r0, r2
@@ -2197,7 +2197,7 @@ sub_08005060: @ 0x08005060
 	b _080050BA
 	.align 2, 0
 _08005078: .4byte gUnk_03002C82
-_0800507C: .4byte gUnk_03002A10
+_0800507C: .4byte gMultiSioArea
 _08005080:
 	movs r0, #2
 	strb r0, [r1]
@@ -2213,7 +2213,7 @@ _08005098:
 	movs r0, #0xc
 _0800509A:
 	strh r0, [r6]
-	ldr r1, _080050C0 @ =gUnk_03002A10
+	ldr r1, _080050C0 @ =gMultiSioArea
 	movs r2, #0xb
 _080050A0:
 	ldrb r0, [r4]
@@ -2234,7 +2234,7 @@ _080050BA:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_080050C0: .4byte gUnk_03002A10
+_080050C0: .4byte gMultiSioArea
 
 	thumb_func_start sub_080050C4
 sub_080050C4: @ 0x080050C4
@@ -2242,7 +2242,7 @@ sub_080050C4: @ 0x080050C4
 	ldr r0, _0800510C @ =gUnk_03002C94
 	movs r1, #0
 	strh r1, [r0]
-	ldr r1, _08005110 @ =gUnk_03002A10
+	ldr r1, _08005110 @ =gMultiSioArea
 	ldrb r0, [r1]
 	movs r2, #0
 	cmp r0, #8
@@ -2278,7 +2278,7 @@ _080050F2:
 	bx r0
 	.align 2, 0
 _0800510C: .4byte gUnk_03002C94
-_08005110: .4byte gUnk_03002A10
+_08005110: .4byte gMultiSioArea
 _08005114: .4byte gUnk_03002A00
 _08005118: .4byte gUnk_03002C80
 
@@ -2293,7 +2293,7 @@ sub_0800511C: @ 0x0800511C
 	beq _0800512C
 	b _08005306
 _0800512C:
-	ldr r1, _08005164 @ =gUnk_03002A10
+	ldr r1, _08005164 @ =gMultiSioArea
 	movs r2, #0x92
 	lsls r2, r2, #1
 	adds r0, r1, r2
@@ -2323,7 +2323,7 @@ _08005156:
 	mov pc, r0
 	.align 2, 0
 _08005160: .4byte gUnk_03001068
-_08005164: .4byte gUnk_03002A10
+_08005164: .4byte gMultiSioArea
 _08005168: .4byte 0x00000125
 _0800516C: .4byte _08005170
 _08005170: @ jump table
@@ -2397,7 +2397,7 @@ _0800520A:
 	beq _0800522C
 	adds r0, r5, #0
 	bl sub_08005060
-	ldr r0, _08005228 @ =gUnk_03002A10
+	ldr r0, _08005228 @ =gMultiSioArea
 	movs r2, #0x93
 	lsls r2, r2, #1
 	adds r1, r0, r2
@@ -2406,7 +2406,7 @@ _0800520A:
 	b _08005306
 	.align 2, 0
 _08005224: .4byte gUnk_03002A02
-_08005228: .4byte gUnk_03002A10
+_08005228: .4byte gMultiSioArea
 _0800522C:
 	adds r0, r4, #0
 	bl sub_08005060
@@ -2439,7 +2439,7 @@ _0800524C:
 	bne _08005280
 _08005266:
 	bl sub_080050C4
-	ldr r0, _0800527C @ =gUnk_03002A10
+	ldr r0, _0800527C @ =gMultiSioArea
 	movs r2, #0x92
 	lsls r2, r2, #1
 	adds r0, r0, r2
@@ -2447,7 +2447,7 @@ _08005266:
 	.align 2, 0
 _08005274: .4byte gUnk_030035D4
 _08005278: .4byte 0x00000125
-_0800527C: .4byte gUnk_03002A10
+_0800527C: .4byte gMultiSioArea
 _08005280:
 	adds r0, r5, #0
 	bl sub_08005060
@@ -2469,7 +2469,7 @@ _080052A2:
 	beq _08005306
 	adds r0, r4, #0
 	bl sub_08005060
-	ldr r0, _080052C0 @ =gUnk_03002A10
+	ldr r0, _080052C0 @ =gMultiSioArea
 	movs r2, #0x93
 	lsls r2, r2, #1
 	adds r1, r0, r2
@@ -2478,7 +2478,7 @@ _080052A2:
 	b _08005306
 	.align 2, 0
 _080052BC: .4byte gUnk_03002A02
-_080052C0: .4byte gUnk_03002A10
+_080052C0: .4byte gMultiSioArea
 _080052C4:
 	adds r0, r5, #0
 	bl strlen
@@ -2495,7 +2495,7 @@ _080052DE:
 	cmp r1, #0
 	beq _08005300
 	bl sub_080050C4
-	ldr r0, _080052FC @ =gUnk_03002A10
+	ldr r0, _080052FC @ =gMultiSioArea
 	movs r1, #0x92
 	lsls r1, r1, #1
 	adds r0, r0, r1
@@ -2506,7 +2506,7 @@ _080052EE:
 	b _08005308
 	.align 2, 0
 _080052F8: .4byte gUnk_03002A02
-_080052FC: .4byte gUnk_03002A10
+_080052FC: .4byte gMultiSioArea
 _08005300:
 	adds r0, r4, #0
 	bl sub_08005060
@@ -2527,7 +2527,7 @@ sub_08005310: @ 0x08005310
 	adds r4, r1, #0
 	lsls r2, r2, #0x10
 	lsrs r7, r2, #0x10
-	ldr r5, _08005338 @ =gUnk_03002A10
+	ldr r5, _08005338 @ =gMultiSioArea
 	movs r0, #0x92
 	lsls r0, r0, #1
 	adds r6, r5, r0
@@ -2542,7 +2542,7 @@ _08005334:
 	movs r0, #0
 	b _08005380
 	.align 2, 0
-_08005338: .4byte gUnk_03002A10
+_08005338: .4byte gMultiSioArea
 _0800533C:
 	movs r1, #0
 	mov r8, r1
@@ -2601,7 +2601,7 @@ sub_0800538C: @ 0x0800538C
 	lsls r0, r0, #0x10
 	lsrs r0, r0, #0x10
 	mov sb, r0
-	ldr r5, _080053C4 @ =gUnk_03002A10
+	ldr r5, _080053C4 @ =gMultiSioArea
 	movs r0, #0x92
 	lsls r0, r0, #1
 	adds r0, r0, r5
@@ -2617,7 +2617,7 @@ _080053C0:
 	movs r0, #0
 	b _08005468
 	.align 2, 0
-_080053C4: .4byte gUnk_03002A10
+_080053C4: .4byte gMultiSioArea
 _080053C8: .4byte 0x00000101
 _080053CC:
 	movs r0, #2
@@ -2721,7 +2721,7 @@ sub_08005478: @ 0x08005478
 	ldr r1, _080054E4 @ =gUnk_03002930
 	bl MultiSioMain
 	str r0, [r4]
-	ldr r4, _080054E8 @ =gUnk_03002A10
+	ldr r4, _080054E8 @ =gMultiSioArea
 	ldrb r1, [r4]
 	movs r0, #8
 	ands r0, r1
@@ -2756,7 +2756,7 @@ _080054D8: .4byte gUnk_03000E5C
 _080054DC: .4byte gUnk_03001068
 _080054E0: .4byte gUnk_03000890
 _080054E4: .4byte gUnk_03002930
-_080054E8: .4byte gUnk_03002A10
+_080054E8: .4byte gMultiSioArea
 _080054EC: .4byte 0x04000128
 _080054F0:
 	adds r0, #1
@@ -2767,7 +2767,7 @@ _080054F8:
 	ldr r0, [r0]
 	cmp r0, #3
 	beq _08005538
-	ldr r1, _0800552C @ =gUnk_03002A10
+	ldr r1, _0800552C @ =gMultiSioArea
 	movs r4, #0x91
 	lsls r4, r4, #1
 	adds r3, r1, r4
@@ -2786,14 +2786,14 @@ _080054F8:
 	bl _08006002
 	.align 2, 0
 _08005528: .4byte gUnk_03001068
-_0800552C: .4byte gUnk_03002A10
+_0800552C: .4byte gMultiSioArea
 _08005530:
 	adds r0, #1
 	strh r0, [r3]
 	bl _08006002
 _08005538:
 	bl sub_0809FE24
-	ldr r5, _080055AC @ =gUnk_03002A10
+	ldr r5, _080055AC @ =gMultiSioArea
 	ldrb r0, [r5]
 	lsrs r0, r0, #3
 	str r0, [sp]
@@ -2851,7 +2851,7 @@ _080055A0:
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-_080055AC: .4byte gUnk_03002A10
+_080055AC: .4byte gMultiSioArea
 _080055B0: .4byte gUnk_03002930
 _080055B4: .4byte 0x00000141
 _080055B8: .4byte 0x00000125
@@ -2879,7 +2879,7 @@ _080055C4: @ jump table
 	.4byte _08005A00 @ case 18
 	.4byte _080056D8 @ case 19
 _08005614:
-	ldr r6, _08005670 @ =gUnk_03002A10
+	ldr r6, _08005670 @ =gMultiSioArea
 	movs r3, #0x92
 	lsls r3, r3, #1
 	adds r1, r6, r3
@@ -2925,10 +2925,10 @@ _08005614:
 	str r1, [r2]
 	b _08005A00
 	.align 2, 0
-_08005670: .4byte gUnk_03002A10
+_08005670: .4byte gMultiSioArea
 _08005674: .4byte gUnk_03002930
 _08005678:
-	ldr r2, _080056AC @ =gUnk_03002A10
+	ldr r2, _080056AC @ =gMultiSioArea
 	ldr r0, _080056B0 @ =gUnk_03002930
 	ldr r4, [sp]
 	lsls r1, r4, #4
@@ -2954,10 +2954,10 @@ _08005678:
 	strb r0, [r1]
 	b _08005A00
 	.align 2, 0
-_080056AC: .4byte gUnk_03002A10
+_080056AC: .4byte gMultiSioArea
 _080056B0: .4byte gUnk_03002930
 _080056B4:
-	ldr r2, _080056D4 @ =gUnk_03002A10
+	ldr r2, _080056D4 @ =gMultiSioArea
 	movs r6, #0x9a
 	lsls r6, r6, #1
 	adds r0, r2, r6
@@ -2974,7 +2974,7 @@ _080056B4:
 	strb r0, [r1]
 	b _08005A00
 	.align 2, 0
-_080056D4: .4byte gUnk_03002A10
+_080056D4: .4byte gMultiSioArea
 _080056D8:
 	ldr r3, _08005700 @ =gUnk_03002A00
 	ldr r1, _08005704 @ =gUnk_03002930
@@ -3001,7 +3001,7 @@ _080056F0:
 _08005700: .4byte gUnk_03002A00
 _08005704: .4byte gUnk_03002930
 _08005708:
-	ldr r1, _08005740 @ =gUnk_03002A10
+	ldr r1, _08005740 @ =gMultiSioArea
 	movs r2, #0x92
 	lsls r2, r2, #1
 	adds r0, r1, r2
@@ -3030,7 +3030,7 @@ _08005720:
 	strh r0, [r1, #2]
 	b _08005A00
 	.align 2, 0
-_08005740: .4byte gUnk_03002A10
+_08005740: .4byte gMultiSioArea
 _08005744: .4byte gUnk_03000890
 _08005748:
 	b _08005748
@@ -3113,7 +3113,7 @@ _080057CE:
 	.align 2, 0
 _080057D8: .4byte gUnk_03000890
 _080057DC:
-	ldr r0, _080057EC @ =gUnk_03002A10
+	ldr r0, _080057EC @ =gMultiSioArea
 	movs r3, #0x94
 	lsls r3, r3, #1
 	adds r0, r0, r3
@@ -3121,9 +3121,9 @@ _080057DC:
 	strh r1, [r0]
 	b _08005A00
 	.align 2, 0
-_080057EC: .4byte gUnk_03002A10
+_080057EC: .4byte gMultiSioArea
 _080057F0:
-	ldr r2, _08005824 @ =gUnk_03002A10
+	ldr r2, _08005824 @ =gMultiSioArea
 	movs r4, #0x92
 	lsls r4, r4, #1
 	adds r0, r2, r4
@@ -3150,10 +3150,10 @@ _08005800:
 	strh r0, [r1, #2]
 	bl _08006002
 	.align 2, 0
-_08005824: .4byte gUnk_03002A10
+_08005824: .4byte gMultiSioArea
 _08005828: .4byte gUnk_03000890
 _0800582C:
-	ldr r7, _080058F4 @ =gUnk_03002A10
+	ldr r7, _080058F4 @ =gMultiSioArea
 	movs r4, #0x92
 	lsls r4, r4, #1
 	adds r1, r7, r4
@@ -3250,11 +3250,11 @@ _0800582C:
 	strh r0, [r1]
 	b _08005A00
 	.align 2, 0
-_080058F4: .4byte gUnk_03002A10
+_080058F4: .4byte gMultiSioArea
 _080058F8: .4byte gUnk_03002930
 _080058FC: .4byte gUnk_03002C70
 _08005900:
-	ldr r1, _0800596C @ =gUnk_03002A10
+	ldr r1, _0800596C @ =gMultiSioArea
 	movs r3, #0x92
 	lsls r3, r3, #1
 	adds r0, r1, r3
@@ -3310,7 +3310,7 @@ _08005934:
 	movs r4, #6
 	b _08005990
 	.align 2, 0
-_0800596C: .4byte gUnk_03002A10
+_0800596C: .4byte gMultiSioArea
 _08005970: .4byte gUnk_03002930
 _08005974:
 	lsls r0, r0, #0x10
@@ -3351,7 +3351,7 @@ _0800599C:
 	cmp r4, #0
 	bne _0800599C
 _080059B6:
-	ldr r0, _080059D0 @ =gUnk_03002A10
+	ldr r0, _080059D0 @ =gMultiSioArea
 	movs r2, #0x97
 	lsls r2, r2, #1
 	adds r1, r0, r2
@@ -3362,7 +3362,7 @@ _080059B6:
 	.align 2, 0
 _080059C8: .4byte gUnk_03002B46
 _080059CC: .4byte gUnk_03002930
-_080059D0: .4byte gUnk_03002A10
+_080059D0: .4byte gMultiSioArea
 _080059D4:
 	cmp r4, r0
 	bls _08005A00
@@ -3387,7 +3387,7 @@ _080059D4:
 	.align 2, 0
 _080059FC: .4byte gUnk_03000890
 _08005A00:
-	ldr r1, _08005A20 @ =gUnk_03002A10
+	ldr r1, _08005A20 @ =gMultiSioArea
 	movs r2, #0x92
 	lsls r2, r2, #1
 	adds r0, r1, r2
@@ -3404,7 +3404,7 @@ _08005A14:
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-_08005A20: .4byte gUnk_03002A10
+_08005A20: .4byte gMultiSioArea
 _08005A24: .4byte _08005A28
 _08005A28: @ jump table
 	.4byte _08005A9C @ case 0

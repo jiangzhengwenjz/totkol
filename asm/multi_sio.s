@@ -25,17 +25,17 @@ MultiSioInit: @ 0x0800601C
 	strh r0, [r1]
 	movs r0, #0
 	str r0, [sp]
-	ldr r4, _080060D8 @ =gUnk_03002A10
+	ldr r4, _080060D8 @ =gMultiSioArea
 	ldr r2, _080060DC @ =0x05000056
 	mov r0, sp
 	adds r1, r4, #0
 	bl CpuSet
 	ldr r0, _080060E0 @ =MultiSioRecvBufChange
-	ldr r1, _080060E4 @ =gUnk_03002CA0
+	ldr r1, _080060E4 @ =gMultiSioRecvFuncBuf
 	ldr r2, _080060E8 @ =0x04000010
 	bl CpuSet
 	ldr r0, _080060EC @ =MultiSioIntr
-	ldr r1, _080060F0 @ =gUnk_03002B70
+	ldr r1, _080060F0 @ =gMultiSioIntrFuncBuf
 	ldr r2, _080060F4 @ =0x04000040
 	bl CpuSet
 	movs r0, #0xff
@@ -94,13 +94,13 @@ _080060C8: .4byte 0x0000FF7F
 _080060CC: .4byte 0x04000134
 _080060D0: .4byte 0x04000128
 _080060D4: .4byte 0x00006033
-_080060D8: .4byte gUnk_03002A10
+_080060D8: .4byte gMultiSioArea
 _080060DC: .4byte 0x05000056
 _080060E0: .4byte MultiSioRecvBufChange
-_080060E4: .4byte gUnk_03002CA0
+_080060E4: .4byte gMultiSioRecvFuncBuf
 _080060E8: .4byte 0x04000010
 _080060EC: .4byte MultiSioIntr
-_080060F0: .4byte gUnk_03002B70
+_080060F0: .4byte gMultiSioIntrFuncBuf
 _080060F4: .4byte 0x04000040
 
 	thumb_func_start MultiSioStart
@@ -139,7 +139,7 @@ MultiSioStart: @ 0x080060F8
 	ldr r1, _08006174 @ =gUnk_03002930
 	adds r2, r4, #0
 	bl CpuSet
-	ldr r0, _08006178 @ =gUnk_03002A10
+	ldr r0, _08006178 @ =gMultiSioArea
 	movs r1, #1
 	strb r1, [r0, #9]
 	movs r2, #0x92
@@ -160,13 +160,13 @@ _08006168: .4byte 0x04000200
 _0800616C: .4byte gUnk_03000890
 _08006170: .4byte 0x05000001
 _08006174: .4byte gUnk_03002930
-_08006178: .4byte gUnk_03002A10
+_08006178: .4byte gMultiSioArea
 
 	thumb_func_start MultiSioStop
 MultiSioStop: @ 0x0800617C
 	push {r4, r5, r6, lr}
 	sub sp, #0xc
-	ldr r6, _080061DC @ =gUnk_03002A10
+	ldr r6, _080061DC @ =gMultiSioArea
 	movs r4, #0
 	strb r4, [r6, #9]
 	ldr r0, _080061E0 @ =0x0400010C
@@ -209,7 +209,7 @@ MultiSioStop: @ 0x0800617C
 	pop {r0}
 	bx r0
 	.align 2, 0
-_080061DC: .4byte gUnk_03002A10
+_080061DC: .4byte gMultiSioArea
 _080061E0: .4byte 0x0400010C
 _080061E4: .4byte gUnk_030010B0
 _080061E8: .4byte 0x0000FF3F
@@ -228,7 +228,7 @@ MultiSioMain: @ 0x08006210
 	push {r4, r5, r6, r7, lr}
 	adds r7, r0, #0
 	adds r6, r1, #0
-	ldr r4, _08006224 @ =gUnk_03002A10
+	ldr r4, _08006224 @ =gMultiSioArea
 	ldrb r0, [r4, #1]
 	cmp r0, #0
 	beq _08006228
@@ -236,7 +236,7 @@ MultiSioMain: @ 0x08006210
 	beq _08006284
 	b _08006296
 	.align 2, 0
-_08006224: .4byte gUnk_03002A10
+_08006224: .4byte gMultiSioArea
 _08006228:
 	ldr r3, _080062A8 @ =0x04000128
 	ldrb r5, [r3]
@@ -289,11 +289,11 @@ _08006284:
 	bl MultiSioRecvDataCheck
 	adds r0, r7, #0
 	bl MultiSioSendDataSet
-	ldr r1, _080062C4 @ =gUnk_03002A10
+	ldr r1, _080062C4 @ =gMultiSioArea
 	movs r0, #1
 	strb r0, [r1, #1]
 _08006296:
-	ldr r0, _080062C4 @ =gUnk_03002A10
+	ldr r0, _080062C4 @ =gMultiSioArea
 	ldrb r1, [r0, #0xb]
 	adds r1, #1
 	strb r1, [r0, #0xb]
@@ -309,13 +309,13 @@ _080062B4: .4byte 0x0000FF7F
 _080062B8: .4byte 0x04000200
 _080062BC: .4byte 0x04000202
 _080062C0: .4byte 0x00C0B1FC
-_080062C4: .4byte gUnk_03002A10
+_080062C4: .4byte gMultiSioArea
 
 	thumb_func_start MultiSioSendDataSet
 MultiSioSendDataSet: @ 0x080062C8
 	push {r4, r5, lr}
 	movs r5, #0
-	ldr r4, _08006328 @ =gUnk_03002A10
+	ldr r4, _08006328 @ =gMultiSioArea
 	ldr r2, [r4, #0x28]
 	ldrb r1, [r4, #0xb]
 	strb r1, [r2]
@@ -364,7 +364,7 @@ _08006322:
 	pop {r0}
 	bx r0
 	.align 2, 0
-_08006328: .4byte gUnk_03002A10
+_08006328: .4byte gMultiSioArea
 _0800632C: .4byte 0x04000004
 _08006330: .4byte 0x0400010E
 
@@ -377,10 +377,10 @@ MultiSioRecvDataCheck: @ 0x08006334
 	push {r5, r6, r7}
 	sub sp, #0xc
 	str r0, [sp, #8]
-	ldr r0, _080063E4 @ =gUnk_03002CA0
+	ldr r0, _080063E4 @ =gMultiSioRecvFuncBuf
 	bl _call_via_r0
 	str r0, [sp]
-	ldr r1, _080063E8 @ =gUnk_03002A10
+	ldr r1, _080063E8 @ =gMultiSioArea
 	movs r0, #0
 	strb r0, [r1, #3]
 	movs r6, #0
@@ -444,7 +444,7 @@ _080063AE:
 	adds r6, r7, #0
 	cmp r6, #1
 	ble _0800635E
-	ldr r1, _080063E8 @ =gUnk_03002A10
+	ldr r1, _080063E8 @ =gMultiSioArea
 	ldrb r0, [r1, #2]
 	ldrb r2, [r1, #3]
 	orrs r0, r2
@@ -459,7 +459,7 @@ _080063AE:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_080063E4: .4byte gUnk_03002CA0
-_080063E8: .4byte gUnk_03002A10
+_080063E4: .4byte gMultiSioRecvFuncBuf
+_080063E8: .4byte gMultiSioArea
 _080063EC: .4byte 0x04000004
 _080063F0: .4byte 0x05000004

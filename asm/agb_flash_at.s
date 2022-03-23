@@ -15,7 +15,7 @@ EraseFlashChip_AT: @ 0x081597F0
 	ldrh r0, [r5]
 	ldr r6, _0815984C @ =0x0000FFFC
 	ands r0, r6
-	ldr r1, _08159850 @ =gUnk_0824DEF4
+	ldr r1, _08159850 @ =gAT29LV512
 	ldrh r1, [r1, #0x24]
 	orrs r0, r1
 	strh r0, [r5]
@@ -31,7 +31,7 @@ EraseFlashChip_AT: @ 0x081597F0
 	strb r2, [r3]
 	movs r0, #0x10
 	strb r0, [r1]
-	ldr r0, _0815985C @ =gUnk_02029C10
+	ldr r0, _0815985C @ =gWaitForFlashWrite
 	movs r1, #0xe0
 	lsls r1, r1, #0x14
 	ldr r3, [r0]
@@ -52,16 +52,16 @@ EraseFlashChip_AT: @ 0x081597F0
 	.align 2, 0
 _08159848: .4byte 0x04000204
 _0815984C: .4byte 0x0000FFFC
-_08159850: .4byte gUnk_0824DEF4
+_08159850: .4byte gAT29LV512
 _08159854: .4byte 0x0E005555
 _08159858: .4byte 0x0E002AAA
-_0815985C: .4byte gUnk_02029C10
+_0815985C: .4byte gWaitForFlashWrite
 
 	thumb_func_start EraseFlashSector_AT
 EraseFlashSector_AT: @ 0x08159860
 	push {r4, r5, lr}
 	lsls r0, r0, #0x10
-	ldr r3, _081598D0 @ =gUnk_0824DEF4
+	ldr r3, _081598D0 @ =gAT29LV512
 	lsrs r0, r0, #0x10
 	adds r4, r0, #0
 	ldrb r1, [r3, #0x1c]
@@ -96,7 +96,7 @@ _081598A0:
 	subs r4, #1
 	ldr r0, _081598D4 @ =0x04000208
 	strh r5, [r0]
-	ldr r0, _081598E0 @ =gUnk_02029C10
+	ldr r0, _081598E0 @ =gWaitForFlashWrite
 	ldr r3, [r0]
 	movs r0, #1
 	adds r1, r4, #0
@@ -117,11 +117,11 @@ _081598C6:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_081598D0: .4byte gUnk_0824DEF4
+_081598D0: .4byte gAT29LV512
 _081598D4: .4byte 0x04000208
 _081598D8: .4byte 0x0E005555
 _081598DC: .4byte 0x0E002AAA
-_081598E0: .4byte gUnk_02029C10
+_081598E0: .4byte gWaitForFlashWrite
 
 	thumb_func_start EraseFlash4KB_AT
 EraseFlash4KB_AT: @ 0x081598E4
@@ -142,7 +142,7 @@ _081598F8:
 	ldrh r0, [r2]
 	ldr r1, _0815991C @ =0x0000FFFC
 	ands r0, r1
-	ldr r1, _08159920 @ =gUnk_0824DEF4
+	ldr r1, _08159920 @ =gAT29LV512
 	ldrh r1, [r1, #0x24]
 	orrs r0, r1
 	strh r0, [r2]
@@ -155,7 +155,7 @@ _08159914:
 	.align 2, 0
 _08159918: .4byte 0x04000204
 _0815991C: .4byte 0x0000FFFC
-_08159920: .4byte gUnk_0824DEF4
+_08159920: .4byte gAT29LV512
 _08159924:
 	subs r0, r4, #1
 	lsls r0, r0, #0x10
@@ -203,7 +203,7 @@ ProgramFlashSector_AT: @ 0x08159970
 	push {r4, r5, r6, lr}
 	adds r5, r1, #0
 	lsls r0, r0, #0x10
-	ldr r3, _081599D4 @ =gUnk_0824DEF4
+	ldr r3, _081599D4 @ =gAT29LV512
 	lsrs r0, r0, #0x10
 	adds r4, r0, #0
 	ldrb r1, [r3, #0x1c]
@@ -240,7 +240,7 @@ _081599B4:
 	subs r5, #1
 	ldr r0, _081599D8 @ =0x04000208
 	strh r6, [r0]
-	ldr r0, _081599E4 @ =gUnk_02029C10
+	ldr r0, _081599E4 @ =gWaitForFlashWrite
 	ldrb r2, [r5]
 	ldr r3, [r0]
 	movs r0, #1
@@ -252,11 +252,11 @@ _081599B4:
 	pop {r1}
 	bx r1
 	.align 2, 0
-_081599D4: .4byte gUnk_0824DEF4
+_081599D4: .4byte gAT29LV512
 _081599D8: .4byte 0x04000208
 _081599DC: .4byte 0x0E005555
 _081599E0: .4byte 0x0E002AAA
-_081599E4: .4byte gUnk_02029C10
+_081599E4: .4byte gWaitForFlashWrite
 
 	thumb_func_start ProgramFlash4KB_AT
 ProgramFlash4KB_AT: @ 0x081599E8
@@ -280,14 +280,14 @@ _08159A04:
 	ldrh r0, [r2]
 	ldr r1, _08159A30 @ =0x0000FFFC
 	ands r0, r1
-	ldr r1, _08159A34 @ =gUnk_0824DEF4
+	ldr r1, _08159A34 @ =gAT29LV512
 	ldrh r1, [r1, #0x24]
 	orrs r0, r1
 	strh r0, [r2]
 	lsls r0, r4, #0x15
 	lsrs r5, r0, #0x10
-	ldr r1, _08159A38 @ =gUnk_02029C1C
-	ldr r0, _08159A3C @ =gUnk_0824DEC8
+	ldr r1, _08159A38 @ =gFlashRemainder
+	ldr r0, _08159A3C @ =gAT29LV512Lib
 	ldr r0, [r0, #0x18]
 	strh r0, [r1]
 	adds r0, r1, #0
@@ -296,11 +296,11 @@ _08159A04:
 	.align 2, 0
 _08159A2C: .4byte 0x04000204
 _08159A30: .4byte 0x0000FFFC
-_08159A34: .4byte gUnk_0824DEF4
-_08159A38: .4byte gUnk_02029C1C
-_08159A3C: .4byte gUnk_0824DEC8
+_08159A34: .4byte gAT29LV512
+_08159A38: .4byte gFlashRemainder
+_08159A3C: .4byte gAT29LV512Lib
 _08159A40:
-	ldr r0, _08159A60 @ =gUnk_0824DEF4
+	ldr r0, _08159A60 @ =gAT29LV512
 	ldr r1, [r0, #0x18]
 	mov r2, r8
 	ldrh r0, [r2]
@@ -318,7 +318,7 @@ _08159A54:
 	movs r4, #2
 	b _08159A6E
 	.align 2, 0
-_08159A60: .4byte gUnk_0824DEF4
+_08159A60: .4byte gAT29LV512
 _08159A64:
 	subs r0, r4, #1
 	lsls r0, r0, #0x10

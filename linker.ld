@@ -1,3 +1,6 @@
+gNumMusicPlayers = 4;
+gMaxLines = 0;
+
 ENTRY(__start)
 
 MEMORY {
@@ -75,12 +78,11 @@ SECTIONS {
         . = 0x00002B18; gUnk_02002B18 = .;
         . = 0x00002B1C; gUnk_02002B1C = .;
         . = 0x00002B20; gUnk_02002B20 = .;
-        . = 0x00002B30; gUnk_02002B30 = .;
-        . = 0x000034B0; gUnk_020034B0 = .;
-        . = 0x000034B4; gUnk_020034B4 = .;
+        . = 0x00002B30; gSoundInfo = .;
+        . = 0x000034B0; gMPlayJumpTable = .;
         . = 0x00003538; gUnk_02003538 = .;
         . = 0x0000353C; gUnk_0200353C = .;
-        . = 0x00003540; gUnk_02003540 = .;
+        . = 0x00003540; gCgbChans = .;
         . = 0x00003640; gUnk_02003640 = .;
         . = 0x00003650; gUnk_02003650 = .;
         . = 0x00003652; gUnk_02003652 = .;
@@ -183,14 +185,14 @@ SECTIONS {
         . = 0x00029B00; gUnk_02029B00 = .;
         . = 0x00029B40; gUnk_02029B40 = .;
         . = 0x00029B80; gUnk_02029B80 = .;
-        . = 0x00029BC0; gUnk_02029BC0 = .;
+        . = 0x00029BC0; gMPlayMemAccArea = .;
         . = 0x00029BD0; gUnk_02029BD0 = .;
-        . = 0x00029C10; gUnk_02029C10 = .;
-        . = 0x00029C14; gUnk_02029C14 = .;
-        . = 0x00029C18; gUnk_02029C18 = .;
-        . = 0x00029C1C; gUnk_02029C1C = .;
-        . = 0x00029C20; gUnk_02029C20 = .;
-        . = 0x00029C24; gUnk_02029C24 = .;
+        . = 0x00029C10; gWaitForFlashWrite = .;
+        . = 0x00029C14; gProgramFlashSector = .;
+        . = 0x00029C18; gFlash = .;
+        . = 0x00029C1C; gFlashRemainder = .;
+        . = 0x00029C20; gEraseFlashChip = .;
+        . = 0x00029C24; gEraseFlashSector = .;
         . = 0x00029C28; gUnk_02029C28 = .;
         . = 0x00029C30; gUnk_02029C30 = .;
         . = 0x00029C50; gUnk_02029C50 = .;
@@ -456,16 +458,16 @@ SECTIONS {
         . = 0x000029F8; gUnk_030029F8 = .;
         . = 0x00002A00; gUnk_03002A00 = .;
         . = 0x00002A02; gUnk_03002A02 = .;
-        . = 0x00002A10; gUnk_03002A10 = .;
+        . = 0x00002A10; gMultiSioArea = .;
         . = 0x00002B44; gUnk_03002B44 = .;
         . = 0x00002B46; gUnk_03002B46 = .;
-        . = 0x00002B70; gUnk_03002B70 = .;
+        . = 0x00002B70; gMultiSioIntrFuncBuf = .;
         . = 0x00002C70; gUnk_03002C70 = .;
         . = 0x00002C80; gUnk_03002C80 = .;
         . = 0x00002C82; gUnk_03002C82 = .;
         . = 0x00002C90; gUnk_03002C90 = .;
         . = 0x00002C94; gUnk_03002C94 = .;
-        . = 0x00002CA0; gUnk_03002CA0 = .;
+        . = 0x00002CA0; gMultiSioRecvFuncBuf = .;
         . = 0x00002CE0; gUnk_03002CE0 = .;
         . = 0x00002CE8; gUnk_03002CE8 = .;
         . = 0x00002CEC; gUnk_03002CEC = .;
@@ -483,15 +485,14 @@ SECTIONS {
         . = 0x00003550; gUnk_03003550 = .;
         . = 0x000035D0; gUnk_030035D0 = .;
         . = 0x000035D4; gUnk_030035D4 = .;
-        . = 0x000035D8; gUnk_030035D8 = .;
-        . = 0x000035D9; gUnk_030035D9 = .;
-        . = 0x00003EF8; gUnk_03003EF8 = .;
-        . = 0x00003EFC; gUnk_03003EFC = .;
-        . = 0x00003F00; gUnk_03003F00 = .;
-        . = 0x00003F02; gUnk_03003F02 = .;
-        . = 0x00003F04; gUnk_03003F04 = .;
-        . = 0x00003F08; gUnk_03003F08 = .;
-        . = 0x00003F0C; gUnk_03003F0C = .;
+        . = 0x000035D8; SoundMainRAM_Buffer = .;
+        . = 0x00003EF8; gFlashMaxTime = .;
+        . = 0x00003EFC; gPollFlashStatus = .;
+        . = 0x00003F00; sTimerNum = .;
+        . = 0x00003F02; sTimerCount = .;
+        . = 0x00003F04; gFlashTimeoutFlag = .;
+        . = 0x00003F08; sTimerReg = .;
+        . = 0x00003F0C; sSavedIme = .;
         . = 0x00003F10;
         . = ALIGN(4);
         *libgcc.a:dp-bit.o(.bss);

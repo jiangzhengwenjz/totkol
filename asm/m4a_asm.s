@@ -5,13 +5,13 @@
 
 	.text
 
-	thumb_func_start sub_0815B828
-sub_0815B828: @ 0x0815B828
-	add r2, pc, #0x0 @ =sub_0815B82C
+	thumb_func_start umul3232H32
+umul3232H32: @ 0x0815B828
+	add r2, pc, #0x0 @ =__umul3232H32
 	bx r2
 
-	arm_func_start sub_0815B82C
-sub_0815B82C: @ 0x0815B82C
+	arm_func_start __umul3232H32
+__umul3232H32: @ 0x0815B82C
 	umull r2, r3, r0, r1
 	add r0, r3, #0
 	bx lr
@@ -72,12 +72,12 @@ _0815B87A:
 _0815B89A:
 	str r5, [sp, #8]
 	ldr r6, _0815B8B8 @ =0x00000630
-	ldr r3, _0815B8AC @ =gUnk_030035D9
+	ldr r3, _0815B8AC @ =SoundMainRAM_Buffer+1
 	bx r3
 	.align 2, 0
 _0815B8A4: .4byte 0x03007FF0
 _0815B8A8: .4byte 0x68736D53
-_0815B8AC: .4byte gUnk_030035D9
+_0815B8AC: .4byte SoundMainRAM_Buffer+1
 _0815B8B0: .4byte 0x04000006
 _0815B8B4: .4byte 0x00000350
 _0815B8B8: .4byte 0x00000630
@@ -86,13 +86,13 @@ _0815B8B8: .4byte 0x00000630
 SoundMainRAM: @ 0x0815B8BC
 	ldrb r3, [r0, #5]
 	cmp r3, #0
-	beq sub_0815B908
-	add r1, pc, #0x4 @ =sub_0815B8C8
+	beq SoundMainRAM_NoReverb
+	add r1, pc, #0x4 @ =SoundMainRAM_Reverb
 	bx r1
 	.align 2, 0
 
-	arm_func_start sub_0815B8C8
-sub_0815B8C8: @ 0x0815B8C8
+	arm_func_start SoundMainRAM_Reverb
+SoundMainRAM_Reverb: @ 0x0815B8C8
 	cmp r4, #2
 	addeq r7, r0, #0x350
 	addne r7, r5, r8
@@ -108,11 +108,11 @@ _0815B8D8:
 	strb r0, [r5], #1
 	subs r4, r4, #1
 	bgt _0815B8D8
-	add r0, pc, #0x1F @ =sub_0815B926
+	add r0, pc, #0x1F @ =SoundMainRAM_ChanLoop
 	bx r0
 
-	thumb_func_start sub_0815B908
-sub_0815B908: @ 0x0815B908
+	thumb_func_start SoundMainRAM_NoReverb
+SoundMainRAM_NoReverb: @ 0x0815B908
 	movs r0, #0
 	mov r1, r8
 	lsrs r1, r1, #3
@@ -131,8 +131,8 @@ _0815B91A:
 	subs r1, #1
 	bgt _0815B91A
 
-	non_word_aligned_thumb_func_start sub_0815B926
-sub_0815B926: @ 0x0815B926
+	non_word_aligned_thumb_func_start SoundMainRAM_ChanLoop
+SoundMainRAM_ChanLoop: @ 0x0815B926
 	ldr r4, [sp, #0x18]
 	ldr r0, [r4, #0x18]
 	mov ip, r0
@@ -441,8 +441,8 @@ SoundMainBTM: @ 0x0815BBEC
 	bx lr
 	.align 2, 0
 
-	thumb_func_start ClearChain
-ClearChain: @ 0x0815BC04
+	thumb_func_start RealClearChain
+RealClearChain: @ 0x0815BC04
 	ldr r3, [r0, #0x2c]
 	cmp r3, #0
 	beq _0815BC22
@@ -479,7 +479,7 @@ _0815BC2E:
 	strb r1, [r4]
 _0815BC3C:
 	adds r0, r4, #0
-	bl ClearChain
+	bl RealClearChain
 	ldr r4, [r4, #0x34]
 	cmp r4, #0
 	bne _0815BC2E
@@ -491,8 +491,8 @@ _0815BC48:
 	bx r0
 	.align 2, 0
 
-	thumb_func_start MPlyJmpTblCopy
-MPlyJmpTblCopy: @ 0x0815BC54
+	thumb_func_start MPlayJumpTableCopy
+MPlayJumpTableCopy: @ 0x0815BC54
 	mov ip, lr
 	movs r1, #0x24
 	ldr r2, _0815BC84 @ =gUnk_0824DF48
@@ -537,7 +537,9 @@ sub_0815BC8A: @ 0x0815BC8A
 	ldrb r3, [r2]
 	b _0815BC6E
 	.align 2, 0
-_0815BC94:
+
+	thumb_func_start ply_goto
+ply_goto:
 	push {lr}
 _0815BC96:
 	ldr r2, [r1, #0x40]
@@ -568,7 +570,7 @@ ply_patt: @ 0x0815BCB4
 	ldrb r2, [r1, #2]
 	adds r2, #1
 	strb r2, [r1, #2]
-	b _0815BC94
+	b ply_goto
 _0815BCCC:
 	b _0815BC24
 	.align 2, 0
@@ -771,8 +773,8 @@ sub_0815BE10: @ 0x0815BE10
 	.align 2, 0
 _0815BE14: .4byte 0x04000060
 
-	thumb_func_start SoundVSync_rev01
-SoundVSync_rev01: @ 0x0815BE18
+	thumb_func_start m4aSoundVSync
+m4aSoundVSync: @ 0x0815BE18
 	ldr r0, _0815C0B4 @ =0x03007FF0
 	ldr r0, [r0]
 	ldr r2, _0815C0B8 @ =0x68736D53
@@ -805,8 +807,8 @@ _0815BE4A:
 _0815BE4C: .4byte 0x040000BC
 _0815BE50: .4byte 0x84400004
 
-	thumb_func_start MPlayMain_rev01
-MPlayMain_rev01: @ 0x0815BE54
+	thumb_func_start MPlayMain
+MPlayMain: @ 0x0815BE54
 	ldr r2, _0815C0B8 @ =0x68736D53
 	ldr r3, [r0, #0x34]
 	cmp r2, r3
@@ -839,7 +841,7 @@ _0815BE88:
 	ldr r0, [r0]
 	mov r8, r0
 	adds r0, r7, #0
-	bl FadeOutBody_rev01
+	bl FadeOutBody
 	ldr r0, [r7, #4]
 	cmp r0, #0
 	bge _0815BE9C
@@ -884,7 +886,7 @@ _0815BEC2:
 	b _0815BEE4
 _0815BEDE:
 	adds r0, r4, #0
-	bl ClearChain_rev
+	bl ClearChain
 _0815BEE4:
 	ldr r4, [r4, #0x34]
 	cmp r4, #0
@@ -895,7 +897,7 @@ _0815BEEA:
 	tst r0, r3
 	beq _0815BF68
 	adds r0, r5, #0
-	bl Clear64byte_rev
+	bl Clear64byte
 	movs r0, #0x80
 	strb r0, [r5]
 	movs r0, #2
@@ -950,7 +952,7 @@ _0815BF3C:
 	beq _0815BFC4
 	b _0815BF68
 _0815BF5E:
-	ldr r0, _0815C0B0 @ =gUnk_0824E1BC
+	ldr r0, _0815C0B0 @ =gClockTable
 	subs r1, #0x80
 	adds r1, r1, r0
 	ldrb r0, [r1]
@@ -1050,7 +1052,7 @@ _0815BFF8:
 	mov sb, r2
 	adds r0, r7, #0
 	adds r1, r5, #0
-	bl TrkVolPitSet_rev01
+	bl TrkVolPitSet
 	ldr r4, [r5, #0x20]
 	cmp r4, #0
 	beq _0815C088
@@ -1060,7 +1062,7 @@ _0815C016:
 	tst r0, r1
 	bne _0815C026
 	adds r0, r4, #0
-	bl ClearChain_rev
+	bl ClearChain
 	b _0815C082
 _0815C026:
 	ldrb r0, [r4, #1]
@@ -1107,7 +1109,7 @@ _0815C076:
 	adds r1, r2, #0
 	ldrb r2, [r5, #9]
 	ldr r0, [r4, #0x24]
-	bl MidiKey2fr
+	bl MidiKeyToFreq
 	str r0, [r4, #0x20]
 _0815C082:
 	ldr r4, [r4, #0x34]
@@ -1139,12 +1141,12 @@ _0815C09C:
 sub_0815C0AC: @ 0x0815C0AC
 	bx r3
 	.align 2, 0
-_0815C0B0: .4byte gUnk_0824E1BC
+_0815C0B0: .4byte gClockTable
 _0815C0B4: .4byte 0x03007FF0
 _0815C0B8: .4byte 0x68736D53
 
-	thumb_func_start TrackStop_rev01
-TrackStop_rev01: @ 0x0815C0BC
+	thumb_func_start TrackStop
+TrackStop: @ 0x0815C0BC
 	push {r4, r5, r6, lr}
 	adds r5, r1, #0
 	ldrb r1, [r5]
@@ -1212,8 +1214,8 @@ _0815C12C:
 	strb r0, [r4, #3]
 	bx lr
 
-	thumb_func_start ply_note_rev01
-ply_note_rev01: @ 0x0815C130
+	thumb_func_start ply_note
+ply_note: @ 0x0815C130
 	push {r4, r5, r6, r7, lr}
 	mov r4, r8
 	mov r5, sb
@@ -1226,7 +1228,7 @@ ply_note_rev01: @ 0x0815C130
 	ldr r1, _0815C328 @ =0x03007FF0
 	ldr r1, [r1]
 	str r1, [sp, #4]
-	ldr r1, _0815C32C @ =gUnk_0824E1BC
+	ldr r1, _0815C32C @ =gClockTable
 	adds r0, r0, r1
 	ldrb r0, [r0]
 	strb r0, [r5, #4]
@@ -1395,7 +1397,7 @@ _0815C264:
 	beq _0815C316
 _0815C270:
 	adds r0, r4, #0
-	bl ClearChain_rev
+	bl ClearChain
 	movs r1, #0
 	str r1, [r4, #0x30]
 	ldr r3, [r5, #0x20]
@@ -1415,7 +1417,7 @@ _0815C284:
 _0815C296:
 	ldr r0, [sp]
 	adds r1, r5, #0
-	bl TrkVolPitSet_rev01
+	bl TrkVolPitSet
 	ldr r0, [r5, #4]
 	str r0, [r4, #0x10]
 	ldr r0, [sp, #0x10]
@@ -1469,7 +1471,7 @@ _0815C2FE:
 	ldrb r2, [r5, #9]
 	adds r1, r3, #0
 	adds r0, r7, #0
-	bl MidiKey2fr
+	bl MidiKeyToFreq
 _0815C308:
 	str r0, [r4, #0x20]
 	movs r0, #0x80
@@ -1489,10 +1491,10 @@ _0815C316:
 	bx r0
 	.align 2, 0
 _0815C328: .4byte 0x03007FF0
-_0815C32C: .4byte gUnk_0824E1BC
+_0815C32C: .4byte gClockTable
 
-	thumb_func_start ply_endtie_rev01
-ply_endtie_rev01: @ 0x0815C330
+	thumb_func_start ply_endtie
+ply_endtie: @ 0x0815C330
 	push {r4, r5}
 	ldr r2, [r1, #0x40]
 	ldrb r3, [r2]
@@ -1550,8 +1552,8 @@ _0815C382:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start ld_r3_tp_adr_i_rev
-ld_r3_tp_adr_i_rev: @ 0x0815C38C
+	thumb_func_start ld_r3_tp_adr_i_2
+ld_r3_tp_adr_i_2: @ 0x0815C38C
 	ldr r2, [r1, #0x40]
 	adds r3, r2, #1
 	str r3, [r1, #0x40]
@@ -1559,10 +1561,10 @@ ld_r3_tp_adr_i_rev: @ 0x0815C38C
 	bx lr
 	.align 2, 0
 
-	thumb_func_start ply_lfos_rev01
-ply_lfos_rev01: @ 0x0815C398
+	thumb_func_start ply_lfos
+ply_lfos: @ 0x0815C398
 	mov ip, lr
-	bl ld_r3_tp_adr_i_rev
+	bl ld_r3_tp_adr_i_2
 	strb r3, [r1, #0x19]
 	cmp r3, #0
 	bne _0815C3A8
@@ -1571,10 +1573,10 @@ _0815C3A8:
 	bx ip
 	.align 2, 0
 
-	thumb_func_start ply_mod_rev01
-ply_mod_rev01: @ 0x0815C3AC
+	thumb_func_start ply_mod
+ply_mod: @ 0x0815C3AC
 	mov ip, lr
-	bl ld_r3_tp_adr_i_rev
+	bl ld_r3_tp_adr_i_2
 	strb r3, [r1, #0x17]
 	cmp r3, #0
 	bne _0815C3BC

@@ -3785,7 +3785,7 @@ _0800251A:
 	lsls r1, r1, #0x13
 	movs r0, #0x80
 	strh r0, [r1]
-	bl SoundVSyncOff_rev01
+	bl m4aSoundVSyncOff
 	bl m4aMPlayAllStop
 	ldr r0, _08002590 @ =gUnk_03001064
 	strh r4, [r0]
@@ -4234,7 +4234,7 @@ _0800287C:
 	movs r0, #0
 	str r0, [sp, #0x2c]
 	mov r8, sl
-	ldr r0, _08002898 @ =gUnk_02029C18
+	ldr r0, _08002898 @ =gFlash
 	ldr r0, [r0]
 	cmp r0, #0
 	bne _0800288C
@@ -4246,7 +4246,7 @@ _0800288C:
 	b _080028A2
 	.align 2, 0
 _08002894: .4byte 0x000021E0
-_08002898: .4byte gUnk_02029C18
+_08002898: .4byte gFlash
 _0800289C:
 	adds r0, r3, #3
 	lsls r0, r0, #0x18
@@ -4353,7 +4353,7 @@ _0800295C:
 	adds r0, #2
 	adds r0, r0, r7
 	ldrb r4, [r0]
-	ldr r1, _08002994 @ =gUnk_02029C14
+	ldr r1, _08002994 @ =gProgramFlashSector
 	lsls r0, r6, #0xc
 	mov r2, sl
 	adds r5, r2, r0
@@ -4370,14 +4370,14 @@ _0800295C:
 	cmp r0, #0
 	beq _0800299C
 _08002988:
-	ldr r0, _08002998 @ =gUnk_02029C24
+	ldr r0, _08002998 @ =gEraseFlashSector
 	ldr r1, [r0]
 	adds r0, r4, #0
 	bl _call_via_r1
 	b _080029AC
 	.align 2, 0
-_08002994: .4byte gUnk_02029C14
-_08002998: .4byte gUnk_02029C24
+_08002994: .4byte gProgramFlashSector
+_08002998: .4byte gEraseFlashSector
 _0800299C:
 	mov r3, sb
 	adds r0, r3, r6
@@ -4407,7 +4407,7 @@ _080029BA:
 	ldrh r0, [r5]
 	cmp r7, r0
 	bhs _08002A02
-	ldr r6, _08002A0C @ =gUnk_02029C24
+	ldr r6, _08002A0C @ =gEraseFlashSector
 _080029D4:
 	mov r0, sp
 	adds r0, #0x16
@@ -4438,7 +4438,7 @@ _08002A02:
 	b _08002A12
 	.align 2, 0
 _08002A08: .4byte gUnk_030010C0
-_08002A0C: .4byte gUnk_02029C24
+_08002A0C: .4byte gEraseFlashSector
 _08002A10:
 	movs r0, #0
 _08002A12:
@@ -4476,7 +4476,7 @@ sub_08002A24: @ 0x08002A24
 	mov r8, r0
 _08002A4C:
 	adds r7, r6, #0
-	ldr r0, _08002AAC @ =gUnk_02029C18
+	ldr r0, _08002AAC @ =gFlash
 	ldr r0, [r0]
 	cmp r0, #0
 	bne _08002A58
@@ -4526,7 +4526,7 @@ _08002A8E:
 	b _08002B88
 	.align 2, 0
 _08002AA8: .4byte 0x000021E0
-_08002AAC: .4byte gUnk_02029C18
+_08002AAC: .4byte gFlash
 _08002AB0: .4byte gUnk_030010C0
 _08002AB4:
 	str r1, [r7, #0xc]
@@ -5361,7 +5361,7 @@ sub_08003050: @ 0x08003050
 	lsls r1, r1, #0x18
 	lsrs r5, r1, #0x18
 	bl m4aMPlayAllStop
-	bl SoundVSyncOff_rev01
+	bl m4aSoundVSyncOff
 	movs r0, #2
 	bl sub_08003CDC
 	cmp r4, #1
@@ -5384,7 +5384,7 @@ _08003076:
 	movs r0, #2
 	bl sub_08000E7C
 _08003096:
-	bl SoundVSyncOn_rev01
+	bl m4aSoundVSyncOn
 	adds r0, r5, #0
 	pop {r4, r5, r6}
 	pop {r1}

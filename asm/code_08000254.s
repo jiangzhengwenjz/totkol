@@ -186,7 +186,7 @@ sub_08000254: @ 0x08000254
 	lsrs r0, r1, #0x10
 	cmp r0, #0
 	beq _080003DC
-	ldr r0, _080004FC @ =gUnk_02029C18
+	ldr r0, _080004FC @ =gFlash
 	movs r1, #0
 	str r1, [r0]
 _080003DC:
@@ -268,7 +268,7 @@ _080003DC:
 	ldr r1, _080004BC @ =gUnk_030010B0
 	ldrh r2, [r1, #8]
 	strh r2, [r0]
-	ldr r0, _080004FC @ =gUnk_02029C18
+	ldr r0, _080004FC @ =gFlash
 	ldr r1, [r0]
 	cmp r1, #0
 	beq _0800056E
@@ -279,7 +279,7 @@ _080003DC:
 	lsrs r0, r1, #0x10
 	cmp r0, #0
 	beq _0800055C
-	ldr r0, _080004FC @ =gUnk_02029C18
+	ldr r0, _080004FC @ =gFlash
 	movs r1, #0
 	str r1, [r0]
 	ldr r0, _08000558 @ =gUnk_03001060
@@ -305,7 +305,7 @@ _080004EC: .4byte gUnk_03000D80
 _080004F0: .4byte gUnk_0815D918
 _080004F4: .4byte 0x03007FFC
 _080004F8: .4byte gUnk_03000820
-_080004FC: .4byte gUnk_02029C18
+_080004FC: .4byte gFlash
 _08000500: .4byte gUnk_03002910
 _08000504: .4byte gUnk_030029A0
 _08000508: .4byte gUnk_03002920
@@ -370,7 +370,7 @@ sub_080005A0: @ 0x080005A0
 	push {r7, lr}
 	sub sp, #4
 	mov r7, sp
-	bl SoundVSync_rev01
+	bl m4aSoundVSync
 	adds r0, r7, #0
 	movs r1, #0x80
 	lsls r1, r1, #0x13
@@ -505,7 +505,7 @@ _080006A2:
 	adds r2, r1, #0
 	strh r2, [r0]
 	bl sub_0800134C
-	ldr r0, _0800071C @ =gUnk_03002A10
+	ldr r0, _0800071C @ =gMultiSioArea
 	ldrb r1, [r0, #9]
 	cmp r1, #0
 	beq _08000720
@@ -525,7 +525,7 @@ _0800070C: .4byte gUnk_030010B0
 _08000710: .4byte gUnk_03001064
 _08000714: .4byte 0x04000200
 _08000718: .4byte gUnk_03000E60
-_0800071C: .4byte gUnk_03002A10
+_0800071C: .4byte gMultiSioArea
 _08000720:
 	ldr r1, _08000760 @ =gUnk_03000E60
 	adds r0, r1, #0

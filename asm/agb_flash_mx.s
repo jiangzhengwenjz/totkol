@@ -31,12 +31,12 @@ _08159764:
 	ldrh r1, [r3]
 	ldr r0, _081597A4 @ =0x0000FFFC
 	ands r1, r0
-	ldr r0, _081597A8 @ =gUnk_02029C18
+	ldr r0, _081597A8 @ =gFlash
 	ldr r2, [r0]
 	ldrh r0, [r2, #0x10]
 	orrs r1, r0
 	strh r1, [r3]
-	ldr r1, _081597AC @ =gUnk_02029C1C
+	ldr r1, _081597AC @ =gFlashRemainder
 	ldr r0, [r2, #4]
 	strh r0, [r1]
 	ldrb r0, [r2, #8]
@@ -49,8 +49,8 @@ _08159764:
 	.align 2, 0
 _081597A0: .4byte 0x04000204
 _081597A4: .4byte 0x0000FFFC
-_081597A8: .4byte gUnk_02029C18
-_081597AC: .4byte gUnk_02029C1C
+_081597A8: .4byte gFlash
+_081597AC: .4byte gFlashRemainder
 _081597B0:
 	ldrh r0, [r6]
 	subs r0, #1
