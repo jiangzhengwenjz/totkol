@@ -53,3 +53,5 @@ types_*.taghl
 _Deparsed_XSubs.pm
 *.py
 useful
+*.cheats
+*.ss*
