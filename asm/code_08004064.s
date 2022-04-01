@@ -2287,7 +2287,7 @@ sub_0800511C: @ 0x0800511C
 	push {r4, r5, lr}
 	adds r4, r0, #0
 	adds r5, r1, #0
-	ldr r0, _08005160 @ =gUnk_03001068
+	ldr r0, _08005160 @ =gMultiSioStatusFlags
 	ldr r0, [r0]
 	cmp r0, #3
 	beq _0800512C
@@ -2322,7 +2322,7 @@ _08005156:
 	ldr r0, [r0]
 	mov pc, r0
 	.align 2, 0
-_08005160: .4byte gUnk_03001068
+_08005160: .4byte gMultiSioStatusFlags
 _08005164: .4byte gMultiSioArea
 _08005168: .4byte 0x00000125
 _0800516C: .4byte _08005170
@@ -2714,7 +2714,7 @@ sub_08005478: @ 0x08005478
 	push {r5, r6, r7}
 	sub sp, #4
 	ldr r1, _080054D8 @ =gUnk_03000E5C
-	ldr r4, _080054DC @ =gUnk_03001068
+	ldr r4, _080054DC @ =gMultiSioStatusFlags
 	ldr r0, [r4]
 	str r0, [r1]
 	ldr r0, _080054E0 @ =gUnk_03000890
@@ -2753,7 +2753,7 @@ sub_08005478: @ 0x08005478
 	bl _08006002
 	.align 2, 0
 _080054D8: .4byte gUnk_03000E5C
-_080054DC: .4byte gUnk_03001068
+_080054DC: .4byte gMultiSioStatusFlags
 _080054E0: .4byte gUnk_03000890
 _080054E4: .4byte gUnk_03002930
 _080054E8: .4byte gMultiSioArea
@@ -2763,7 +2763,7 @@ _080054F0:
 	strh r0, [r5]
 	bl _08006002
 _080054F8:
-	ldr r0, _08005528 @ =gUnk_03001068
+	ldr r0, _08005528 @ =gMultiSioStatusFlags
 	ldr r0, [r0]
 	cmp r0, #3
 	beq _08005538
@@ -2785,7 +2785,7 @@ _080054F8:
 	bl sub_0809FE24
 	bl _08006002
 	.align 2, 0
-_08005528: .4byte gUnk_03001068
+_08005528: .4byte gMultiSioStatusFlags
 _0800552C: .4byte gMultiSioArea
 _08005530:
 	adds r0, #1
