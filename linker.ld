@@ -550,7 +550,7 @@ SECTIONS {
         asm/m4a.o(.text);
         asm/code_0815D914.o(.text);
         data/data.o(.rodata);
-        asm/code_087D5270.o(.text);
+        asm/iwram_087D5270.o(.text);
         data/data_087D69E8.o(.rodata);
         rom_end = .;
     } >rom

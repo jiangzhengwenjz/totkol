@@ -374,10 +374,10 @@ _08000B7A:
 	str r0, [r4]
 	adds r0, r5, #0
 	movs r1, #0x40
-	bl sub_08002F8C
+	bl memzero
 	ldr r0, _08000BB0 @ =gUnk_03002D30
 	movs r1, #0x40
-	bl sub_08002F8C
+	bl memzero
 	pop {r4, r5}
 	pop {r0}
 	bx r0
@@ -1413,11 +1413,11 @@ _080012DA:
 	bgt _080012DA
 	ldr r0, _08001344 @ =gUnk_03002D70
 	movs r1, #0x40
-	bl sub_08002F8C
+	bl memzero
 	ldr r0, _08001348 @ =gUnk_03002DB0
 	movs r1, #0x80
 	lsls r1, r1, #2
-	bl sub_08002F8C
+	bl memzero
 	pop {r3, r4, r5}
 	mov r8, r3
 	mov sb, r4
@@ -1450,7 +1450,7 @@ sub_0800134C: @ 0x0800134C
 	ldr r1, _08001404 @ =gUnk_03002D70
 	adds r0, r0, r1
 	movs r1, #0x20
-	bl sub_08002F8C
+	bl memzero
 	ldrb r0, [r4]
 	lsls r0, r0, #8
 	ldr r1, _08001408 @ =gUnk_03002DB0
@@ -5227,8 +5227,8 @@ _08002F80: .4byte 0x040000D4
 _08002F84: .4byte 0x85010000
 _08002F88: .4byte 0x81003F00
 
-	thumb_func_start sub_08002F8C
-sub_08002F8C: @ 0x08002F8C
+	thumb_func_start memzero
+memzero: @ 0x08002F8C
 	cmp r1, #0
 	ble _08002F9C
 	movs r2, #0
@@ -5242,8 +5242,8 @@ _08002F9C:
 	bx lr
 	.align 2, 0
 
-	thumb_func_start sub_08002FA0
-sub_08002FA0: @ 0x08002FA0
+	thumb_func_start memset2
+memset2: @ 0x08002FA0
 	lsls r2, r2, #0x18
 	lsrs r2, r2, #0x18
 	cmp r1, #0
@@ -5257,8 +5257,8 @@ _08002FA8:
 _08002FB2:
 	bx lr
 
-	thumb_func_start sub_08002FB4
-sub_08002FB4: @ 0x08002FB4
+	thumb_func_start memcpy2
+memcpy2: @ 0x08002FB4
 	adds r3, r0, #0
 	cmp r2, #0
 	ble _08002FC8
@@ -7263,7 +7263,7 @@ sub_08003D24: @ 0x08003D24
 	ldr r4, _08003D34 @ =gUnk_03000DD0
 	adds r0, r4, #0
 	movs r1, #0x50
-	bl sub_08002F8C
+	bl memzero
 	b _08003D3A
 	.align 2, 0
 _08003D34: .4byte gUnk_03000DD0

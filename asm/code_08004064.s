@@ -843,7 +843,7 @@ _0800468E:
 	adds r5, r4, r0
 	adds r0, r5, #0
 	movs r1, #0xc
-	bl sub_08002F8C
+	bl memzero
 	movs r0, #0x70
 	strb r0, [r5, #4]
 	movs r0, #0x73
@@ -1076,7 +1076,7 @@ sub_0800486C: @ 0x0800486C
 	adds r4, r1, #0
 	adds r5, r0, #0
 	movs r1, #8
-	bl sub_08002F8C
+	bl memzero
 	subs r4, #8
 	lsrs r4, r4, #2
 	strb r4, [r5, #6]
@@ -1086,7 +1086,7 @@ sub_0800486C: @ 0x0800486C
 	adds r4, #8
 	adds r0, r4, #0
 	movs r1, #0xc
-	bl sub_08002F8C
+	bl memzero
 	movs r0, #0x70
 	strb r0, [r4, #4]
 	movs r0, #0x73
@@ -1182,7 +1182,7 @@ sub_08004918: @ 0x08004918
 sub_08004928: @ 0x08004928
 	push {lr}
 	movs r1, #4
-	bl sub_08002F8C
+	bl memzero
 	pop {r0}
 	bx r0
 

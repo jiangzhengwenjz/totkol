@@ -26773,4 +26773,4 @@ gUnk_087D39E4:: @ 087D39E4
 	.incbin "baserom.gba", 0x7D39E4, 0x6C
 
 gUnk_087D3A50:: @ 087D3A50
-	.incbin "baserom.gba", 0x7D3A50, 0x1820
+	.space 0x1820, 0
