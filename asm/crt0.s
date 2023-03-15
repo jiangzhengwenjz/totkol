@@ -15,10 +15,10 @@ __start: @ 0x08000000
 _080000C0:
 	mov r0, #0x12
 	msr cpsr_fc, r0
-	ldr sp, _080000F8 @ =gUnk_03007FA0
+	ldr sp, _080000F8 @ =0x03007FA0
 	mov r0, #0x1f
 	msr cpsr_fc, r0
-	ldr sp, _080000F4 @ =gUnk_03007EC0
+	ldr sp, _080000F4 @ =0x03007EC0
 	ldr r1, gUnk_0800023C @ =0x03007FFC
 	add r0, pc, #0x18 @ =sub_080000FC
 	str r0, [r1]
@@ -27,8 +27,8 @@ _080000C0:
 	bx r1
 	b _080000C0
 	.align 2, 0
-_080000F4: .4byte gUnk_03007EC0
-_080000F8: .4byte gUnk_03007FA0
+_080000F4: .4byte 0x03007EC0
+_080000F8: .4byte 0x03007FA0
 
 	arm_func_start sub_080000FC
 sub_080000FC: @ 0x080000FC

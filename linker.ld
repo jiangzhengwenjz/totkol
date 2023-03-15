@@ -504,12 +504,7 @@ SECTIONS {
         . = 0x00004150; gUnk_03004150 = .;
         . = 0x00005150; gUnk_03005150 = .;
         . = 0x00005158; gUnk_03005158 = .;
-        . = 0x00006ED0; gUnk_03006ED0 = .;
-        . = 0x00006F10; gUnk_03006F10 = .;
-        . = 0x00006F13; gUnk_03006F13 = .;
-        . = 0x00007EC0; gUnk_03007EC0 = .;
-        . = 0x00007FA0; gUnk_03007FA0 = .;
-        . = 0x00008000;
+        . = 0x00005758;
     } >iwram
 
     rom : ALIGN(4) {
@@ -550,8 +545,14 @@ SECTIONS {
         asm/m4a.o(.text);
         asm/code_0815D914.o(.text);
         data/data.o(.rodata);
+    } >rom
+
+    iwram_exec ADDR(iwram) + SIZEOF(iwram) : AT(ADDR(rom) + SIZEOF(rom)) ALIGN(4) {
         asm/iwram_087D5270.o(.text);
         data/data_087D69E8.o(.rodata);
+    } >iwram
+
+    rom_end LOADADDR(iwram_exec) + SIZEOF(iwram_exec) : ALIGN(4) {
         rom_end = .;
     } >rom
 
