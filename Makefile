@@ -41,7 +41,7 @@ MID_BUILDDIR = $(OBJ_DIR)/$(MID_SUBDIR)
 ASFLAGS := -mcpu=arm7tdmi --defsym REVISION=$(REVISION) --defsym $(GAME_LANGUAGE)=1
 
 CC1 := tools/agbcc/bin/agbcc
-override CFLAGS += -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -g -fhex-asm -fprologue-bugfix
+override CFLAGS += -mthumb-interwork -Wimplicit -Wparentheses -Werror -O2 -g -fhex-asm -fprologue-bugfix -ffix-debug-line
 
 CPPFLAGS := -I tools/agbcc -I tools/agbcc/include -iquote include -nostdinc -DREVISION=$(REVISION) -D$(GAME_LANGUAGE)
 
@@ -156,10 +156,10 @@ sound/songs/%.s: sound/songs/%.mid
 	cd $(@D) && ../../$(MID) $(<F)
 
 $(C_BUILDDIR)/m4a.o: CC1 := tools/agbcc/bin/old_agbcc
-$(C_BUILDDIR)/agb_flash.o: CFLAGS := -mthumb-interwork -Wimplicit -Wparentheses -Werror -O1 -g -fhex-asm -fprologue-bugfix
-$(C_BUILDDIR)/agb_flash_le.o: CFLAGS := -mthumb-interwork -Wimplicit -Wparentheses -Werror -O1 -g -fhex-asm -fprologue-bugfix
-$(C_BUILDDIR)/agb_flash_mx.o: CFLAGS := -mthumb-interwork -Wimplicit -Wparentheses -Werror -O1 -g -fhex-asm -fprologue-bugfix
-$(C_BUILDDIR)/agb_flash_at.o: CFLAGS := -mthumb-interwork -Wimplicit -Wparentheses -Werror -O1 -g -fhex-asm -fprologue-bugfix
+$(C_BUILDDIR)/agb_flash.o: CFLAGS := -mthumb-interwork -Wimplicit -Wparentheses -Werror -O1 -g -fhex-asm -fprologue-bugfix -ffix-debug-line
+$(C_BUILDDIR)/agb_flash_le.o: CFLAGS := -mthumb-interwork -Wimplicit -Wparentheses -Werror -O1 -g -fhex-asm -fprologue-bugfix -ffix-debug-line
+$(C_BUILDDIR)/agb_flash_mx.o: CFLAGS := -mthumb-interwork -Wimplicit -Wparentheses -Werror -O1 -g -fhex-asm -fprologue-bugfix -ffix-debug-line
+$(C_BUILDDIR)/agb_flash_at.o: CFLAGS := -mthumb-interwork -Wimplicit -Wparentheses -Werror -O1 -g -fhex-asm -fprologue-bugfix -ffix-debug-line
 
 ifeq ($(NODEP),1)
 $(C_BUILDDIR)/%.o: c_dep :=
