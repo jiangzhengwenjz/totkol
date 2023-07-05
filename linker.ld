@@ -512,7 +512,7 @@ SECTIONS {
         asm/code_08000254.o(.text); /* -O0 */
         asm/code_080008EC.o(.text);
         asm/code_08003FF8.o(.text); /* -O0 */
-        asm/code_08004064.o(.text);
+        asm/code_0800405C.o(.text);
         asm/multi_sio.o(.text);
         asm/code_080063F4.o(.text);
         asm/multi_sio_asm.o(.text);

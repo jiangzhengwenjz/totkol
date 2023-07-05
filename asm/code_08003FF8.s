@@ -63,13 +63,3 @@ sub_08004030: @ 0x08004030
 	bx r0
 	.align 2, 0
 _08004058: .4byte gUnk_085F5E1C
-
-	thumb_func_start sub_0800405C
-sub_0800405C: @ 0x0800405C
-	bx lr
-	.align 2, 0
-
-	thumb_func_start sub_08004060
-sub_08004060: @ 0x08004060
-	bx lr
-	.align 2, 0

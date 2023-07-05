@@ -5,6 +5,16 @@
 
 	.text
 
+	thumb_func_start sub_0800405C
+sub_0800405C: @ 0x0800405C
+	bx lr
+	.align 2, 0
+
+	thumb_func_start sub_08004060
+sub_08004060: @ 0x08004060
+	bx lr
+	.align 2, 0
+
 	thumb_func_start sub_08004064
 sub_08004064: @ 0x08004064
 	push {r4, r5, r6, lr}
